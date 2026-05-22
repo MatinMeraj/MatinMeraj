@@ -120,6 +120,6 @@ I’m also improving my GitHub, project documentation, and portfolio website as 
 
 ## Let's connect
 
-* **LinkedIn:** [linkedin.com/in/matinmeraj
-* **GitHub:** github.com/MatinMeraj 
-* **Email:** [matin_meraj_mohammadi@sfu.ca]
+* **LinkedIn:** [linkedin.com/in/matinmeraj](https://www.linkedin.com/in/matinmeraj)
+* **GitHub:** [github.com/MatinMeraj](https://github.com/MatinMeraj)
+* **Email:** [matin_meraj_mohammadi@sfu.ca](mailto:matin_meraj_mohammadi@sfu.ca)
