@@ -103,7 +103,7 @@ I’m learning more about computational data science, computational data analyti
 
 A big part of my focus is learning how to translate technical analysis into something stakeholders can actually use. I’m paying more attention to the difference between a business problem and an analytical problem, because a model only matters if it answers the right question.
 
-I’m also improving my GitHub, project documentation, and portfolio website as I prepare for Fall 2026 co-op roles in data analytics and data science.
+I’m currently looking for internship and co-op opportunities in data analytics, data science, business analysis, and analytics engineering.
 
 ---
 
