@@ -48,7 +48,7 @@ Predicts customers (covers) per shift from things known in advance (day, shift, 
 
 ---
 
-### Music Mood Classification: audio vs. lyrics
+### MusicMood: audio vs. lyrics
 **A song can sound like a party but read like a breakup.**
 
 A team course project classifying songs into four moods using audio features and lyrics separately, then together. The motivation: streaming platforms tag mood mostly from sound, but a chill-sounding track can carry aggressive lyrics (think a diss track), so audio alone mislabels it.
@@ -60,7 +60,7 @@ A team course project classifying songs into four moods using audio features and
 
 ---
 
-### Graduate Underemployment Prediction: labour-market decision support
+### OverQualified: graduate underemployment (labour-market decision support)
 Built a reproducible ML pipeline to predict graduate underemployment from structured survey data. Cleaned inconsistent categories, handled missing codes and class imbalance, and compared models with cross-validation.
 
 **Result:** about **0.70 ROC AUC** with a tuned XGBoost pipeline (regularization, early stopping). A model like this could help career teams prioritize advising before underemployment becomes entrenched.
@@ -70,7 +70,7 @@ Built a reproducible ML pipeline to predict graduate underemployment from struct
 
 ---
 
-### Library Database Application: relational database + app
+### Library Database: relational database + app
 Designed and implemented a normalized library database (items, patrons, borrowing, events, personnel, room bookings, orders) with a Python application on top. Built the schema, enforced integrity with constraints and triggers, and validated it across **1,000+ records**.
 
 **Result:** a clean, normalized structure (up to BCNF) that keeps data trustworthy from the start, supporting smoother borrowing workflows and faster reporting.
