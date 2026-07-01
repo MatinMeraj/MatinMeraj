@@ -4,122 +4,101 @@
 
 Objectivity and optimality are my work ethic.
 
-My work combines machine learning, database design, statistical thinking, and business-focused analysis. The goal is to extract truth from every source of data we have, then turn that truth into better decisions.
+I combine machine learning, database design, and statistical thinking with a bias toward one thing: finding what is actually true in the data, then turning that into a better decision. I am hardest on my own results, if a model looks too good, I go find out why before I trust it.
 
 Currently preparing for Fall 2026 co-op roles in **Data Analysis, Data Science, Business Analysis, and Analytics Engineering**.
+
+🔗 **Portfolio:** add-your-netlify-link-here
 
 ---
 
 ## What I work with
 
 **Languages:** Python · SQL · R · C++ · Bash
-**Data & ML:** pandas · NumPy · scikit-learn · XGBoost · logistic regression · random forest · classification · model evaluation
-**Visualization:** Tableau · Matplotlib · Seaborn · Excel
-**Databases:** SQLite · relational database design · ER modeling · normalization · SQL constraints · triggers
-**Tools:** Git · GitHub · Jupyter Notebook · VS Code · RStudio · Linux
-**Business skills:** stakeholder communication · decision support · operational analysis · documentation · customer-facing problem solving
+**Data & ML:** pandas · NumPy · scikit-learn · statsmodels · XGBoost · Poisson & negative binomial regression · classification · model evaluation
+**Visualization:** Matplotlib · Seaborn · Tableau · Excel
+**Databases:** SQLite · relational database design · ER modeling · normalization · constraints · triggers
+**Business skills:** stakeholder communication · decision support · operational analysis · documentation
 
 ---
 
 ## Projects I'm proud of
 
-### Music Mood Classification
+### MenuLens: menu decision analytics
+**Should a restaurant cut a dish that still sells?**
 
-**Predicting song mood from audio features vs. lyrics**
+A tool that scores every menu item on margin, prep time, demand trend, ingredient-waste risk, and **station pressure** (a feature I engineered as order volume × prep time to capture kitchen load), then recommends a clear action: keep, promote, reprice, or review for removal. Grounded in the Kasavana-Smith menu-engineering framework.
 
-This project started from a simple idea: a song can sound like a party but read like a breakup.
+**What stands out:** a dish is only flagged for removal when low revenue **and** long prep **and** (thin margin **or** falling demand) line up, so the call is defensible, not a single-metric guess. I also caught my own bug, an early rule judged sales by unit count and flagged a top revenue earner to cut; switching to revenue contribution fixed it.
 
-We built separate audio-based and lyrics-based mood models to test how differently each side of a song expresses emotion. The audio model looked at features like tempo, energy, danceability, and other sound attributes. The lyrics side used sentiment analysis to understand the emotional direction of the words.
-
-**Result:** The audio model reached around **35% accuracy** across four mood classes, compared with a 25% random baseline. The lyrics model reached around **26.5% accuracy**, and the two approaches only agreed about **26%** of the time.
-
-**Why it matters:** This project shows why context matters in music recommendation. A track might have a fast tempo, high energy, and a “hype” sound, but the lyrics may still be sad, reflective, or emotional. For a real music platform, that difference matters. Better mood tagging could improve playlist recommendations, reduce awkward song placements, and help artists, listeners, and platforms understand music beyond surface-level sound.
-
-**Business angle:** Even a small improvement in mood classification could matter at scale. For a streaming platform, better emotional tagging could support more relevant playlists, stronger listener retention, and better ad or content targeting. For artists and labels, it could help position songs for the right audience, campaign, or playlist category.
-
-**Stack:** Python · pandas · scikit-learn · Random Forest · VADER · feature engineering · confusion matrices · model evaluation
+**Stack:** Python · pandas · Streamlit · feature engineering · rule-based decision logic · synthetic data
+🔗 [Repo](https://github.com/MatinMeraj/menulens)
 
 ---
 
-### Graduate Underemployment Prediction
+### ShiftCast: shift demand forecasting
+**How many people should a shift be staffed for, when you can't know how busy it will be?**
 
-**Machine learning project focused on labour-market decision support**
+Predicts customers (covers) per shift from things known in advance (day, shift, weather, events, prior week), then turns the forecast into a staffing number. The aim is to attack one lever behind kitchen turnover: overtime from understaffing.
 
-Built a reproducible machine learning pipeline to predict graduate underemployment using structured survey-style data. I cleaned inconsistent categorical values, handled missing codes, worked with class imbalance, and compared model performance using cross-validation.
+**What stands out:** tested with a **time-based split** (train on the past, predict the future), not a random split that lets a model peek ahead. Started with Poisson, but the variance ran far above the mean (overdispersion, α ≈ 0.13), so a **negative binomial** fit best (R² ≈ 0.53, average error ≈ 28 covers). I also tried a Kalman time-series model as a cross-check; it beat a naive baseline but lost to the regression here, and I report that rather than crown the fancier model. Honest headline: about half of shift demand is predictable, so the right move is to staff that base and keep flexibility for the rest.
 
-**Result:** Achieved approximately **0.70 ROC AUC** using an XGBoost pipeline with regularization, early stopping, and hyperparameter tuning.
-
-**Why it matters:** Underemployment is not just a student problem. It affects universities, employers, governments, and career-support teams. A model like this could help identify which groups of graduates may need stronger career support before the problem becomes harder to fix.
-
-**Business angle:** In a real university or workforce-planning setting, this type of model could help career teams prioritize advising resources, improve graduate outcome reporting, and guide programs toward the skills employers actually demand.
-
-**Stack:** Python · pandas · scikit-learn · XGBoost · model evaluation · data cleaning · cross-validation
+**Stack:** Python · pandas · statsmodels · Poisson / negative binomial regression · state-space (Kalman) · time-series validation · synthetic data
+🔗 [Repo](https://github.com/MatinMeraj/shiftcast)
 
 ---
 
-### Library Database Application
+### Music Mood Classification: audio vs. lyrics
+**A song can sound like a party but read like a breakup.**
 
-**Relational database system with Python application integration**
+A team course project classifying songs into four moods using audio features and lyrics separately, then together. The motivation: streaming platforms tag mood mostly from sound, but a chill-sounding track can carry aggressive lyrics (think a diss track), so audio alone mislabels it.
 
-Designed and implemented a normalized library database with connected entities such as library items, patrons, borrowing transactions, events, personnel, room bookings, orders, and future acquisitions. Built the SQL schema, populated the database, enforced integrity rules, and connected it to a basic Python application.
+**What stands out:** our early accuracy looked great until I traced it to **data leakage** and corrected it. The honest held-out results are audio **34.8%**, lyrics **36.1%**, and audio + lyrics fusion **41.5%**, against a **25%** random baseline for four classes. Fusing both sources beat either alone. The audit, and reporting the true number instead of the leaked one, is the part I'm proudest of.
 
-**Result:** Validated database integrity across **1,000+ records** using SQL constraints, triggers, and normalized table design.
-
-**Why it matters:** Bad data creates real operational problems. Duplicate records, broken relationships, and missing constraints can slow down staff, create reporting errors, and make systems harder to trust. This project focused on building a database structure that keeps information clean from the start.
-
-**Business angle:** A reliable database like this could support smoother borrowing workflows, better inventory tracking, cleaner event attendance records, and faster reporting for library staff.
-
-**Stack:** SQL · SQLite · Python · database design · ER modeling · BCNF · constraints · triggers
+**Stack:** Python · pandas · scikit-learn · VADER sentiment · feature engineering · confusion matrices · model evaluation
+🔗 [Repo](https://github.com/MatinMeraj/Music-Mood-Classification)
 
 ---
 
-### Currently working on: Birdie’s / Earls Restaurant Operations Analytics
+### Graduate Underemployment Prediction: labour-market decision support
+Built a reproducible ML pipeline to predict graduate underemployment from structured survey data. Cleaned inconsistent categories, handled missing codes and class imbalance, and compared models with cross-validation.
 
-**Operational efficiency project based on real restaurant workflow**
+**Result:** about **0.70 ROC AUC** with a tuned XGBoost pipeline (regularization, early stopping). A model like this could help career teams prioritize advising before underemployment becomes entrenched.
 
-I’m currently exploring how restaurant operations can be improved using data. Since I work in a fast-paced kitchen environment, I see where the pressure actually happens: station timing, menu complexity, labour allocation, remake risk, prep planning, closing rushes, and communication between front-of-house and back-of-house.
-
-The goal is to build an analytics project that looks at questions like:
-
-* Which menu items create the most pressure during peak hours?
-* Which items have the highest food cost compared with selling price?
-* Where do labour hours get stretched the most?
-* Which stations slow down the kitchen when order volume spikes?
-* How can managers balance speed, quality, and cost without burning out the team?
-
-**Why it matters:** Restaurants run on thin margins. A small delay, a poorly timed prep decision, or a high-cost menu item can quietly hurt the whole operation. This project is about turning daily kitchen experience into measurable business insight.
-
-**Business angle:** A dashboard like this could help managers compare menu profitability, identify bottlenecks, reduce waste, improve labour scheduling, and protect food quality during rush periods. Even a **5–10% reduction in waste or prep inefficiency** could make a meaningful difference over months of service.
-
-**Planned stack:** Python · SQL · Excel · Tableau/Power BI · operations analysis · dashboarding · cost analysis
+**Stack:** Python · pandas · scikit-learn · XGBoost · cross-validation · data cleaning
+🔗 [Repo](https://github.com/MatinMeraj/Graduate-Underemployment-Prediction)
 
 ---
 
-## What I'm currently working on
+### Library Database Application: relational database + app
+Designed and implemented a normalized library database (items, patrons, borrowing, events, personnel, room bookings, orders) with a Python application on top. Built the schema, enforced integrity with constraints and triggers, and validated it across **1,000+ records**.
 
-Right now, I’m focused on becoming stronger at the full data workflow, not just the modeling part.
+**Result:** a clean, normalized structure (up to BCNF) that keeps data trustworthy from the start, supporting smoother borrowing workflows and faster reporting.
 
-I’m learning more about computational data science, computational data analytics, ETL processes, and data pipelines. I’m also studying customer analytics and how data can explain user behaviour, business performance, and decision-making patterns.
+**Stack:** SQL · SQLite · Python · ER modeling · normalization · constraints · triggers
+🔗 [Repo](https://github.com/MatinMeraj/library-database-app-)
 
-A big part of my focus is learning how to translate technical analysis into something stakeholders can actually use. I’m paying more attention to the difference between a business problem and an analytical problem, because a model only matters if it answers the right question.
+---
 
-I’m currently looking for internship and co-op opportunities in data analytics, data science, business analysis, and analytics engineering.
+## What I'm focused on now
+
+Getting stronger at the full data workflow, not just modeling: ETL, pipelines, and computational data science, plus customer analytics and the difference between a business problem and an analytical problem (a model only matters if it answers the right question). I'm looking for Fall 2026 co-op and internship roles in data analytics, data science, business analysis, and analytics engineering.
 
 ---
 
 ## A bit more about me
 
-* 🎓 BSc Data Science student at Simon Fraser University
-* 💻 Associate Degree in Computer Science from Langara College
-* 📊 Marketing Coordinator at the Data Science Student Society (DSSS)
-* 📈 Interested in data science, analytics, machine learning, and business decision support
-* 🧠 I naturally analyze my surroundings, patterns, systems, and decisions. It is hard for me to turn that part of my brain off.
-* 🤝 Open to co-op, internship, and project opportunities in data analytics and data science
+- 🎓 BSc Data Science student at Simon Fraser University
+- 💻 Associate Degree in Computer Science from Langara College
+- 📊 Marketing Coordinator at the Data Science Student Society (DSSS)
+- 🍳 Line cook in a high-volume kitchen (where a few of these project ideas started)
+- 🤝 Open to co-op, internship, and project opportunities in data analytics and data science
 
 ---
 
 ## Let's connect
 
-* **LinkedIn:** [linkedin.com/in/matinmeraj](https://www.linkedin.com/in/matinmeraj)
-* **GitHub:** [github.com/MatinMeraj](https://github.com/MatinMeraj)
-* **Email:** [matin_meraj_mohammadi@sfu.ca](mailto:matin_meraj_mohammadi@sfu.ca)
+- **Portfolio:** add-your-netlify-link-here
+- **LinkedIn:** [linkedin.com/in/matinmeraj](https://www.linkedin.com/in/matinmeraj)
+- **GitHub:** [github.com/MatinMeraj](https://github.com/MatinMeraj)
+- **Email:** matin_meraj_mohammadi@sfu.ca
