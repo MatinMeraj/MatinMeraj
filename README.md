@@ -8,7 +8,7 @@ I combine machine learning, database design, and statistical thinking with a bia
 
 Currently preparing for Fall 2026 co-op roles in **Data Analysis, Data Science, Business Analysis, and Analytics Engineering**.
 
-🔗 **Portfolio:** add-your-netlify-link-here
+🔗 **Portfolio:** https://matinmeraj.netlify.app
 
 ---
 
@@ -98,7 +98,7 @@ Getting stronger at the full data workflow, not just modeling: ETL, pipelines, a
 
 ## Let's connect
 
-- **Portfolio:** add-your-netlify-link-here
+- **Portfolio:** https://matinmeraj.netlify.app
 - **LinkedIn:** [linkedin.com/in/matinmeraj](https://www.linkedin.com/in/matinmeraj)
 - **GitHub:** [github.com/MatinMeraj](https://github.com/MatinMeraj)
 - **Email:** matin_meraj_mohammadi@sfu.ca
